@@ -111,15 +111,20 @@ while [ $TEMP_EXISTS -eq 2 ]
 
         done
 
-#check that S3 Bucket directory exists
-aws s3 ls $S3_PATH >/dev/null 2>&1
+if [ -n "$S3_PATH" ]; then
+        echo "Backup to AWS S3 bucket $S3_PATH"
+        #check that S3 Bucket directory exists
+        aws s3 ls $S3_PATH >/dev/null 2>&1
 
-if [[ $? -eq 0 ]]
-then
-        echo ""
-        echo "Checking aws S3 for $S3_PATH directory ... directory exists ... proceeding"
-else
-        echo ""
-        echo "S3 Bucket Directory do not exists"
-        exit 1
+        if [[ $? -eq 0 ]]
+        then
+                echo ""
+                echo "Checking aws S3 for $S3_PATH directory ... directory exists ... proceeding"
+        else
+                echo ""
+                echo "S3 Bucket Directory do not exists"
+                exit 1
+        fi
+else 
+        echo "S3_PATH not defined skipping backup to AWS S3"
 fi
