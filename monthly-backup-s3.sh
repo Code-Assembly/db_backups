@@ -35,7 +35,7 @@ do
                 fi
         DATABASE_FILE="${NOW}_${i}_backup.sql";
         DATABASE_FILE_ZIP="${DATABASE_FILE}.zip"
-        sudo mysqldump -u 'root' -p'aleluyagod' $i > $DATABASE_FILE
+        sudo mysqldump -u $MARIA_USER -p$MARIA_PASSWORD $i > $DATABASE_FILE
 
         # Compress database file
         zip $DATABASE_FILE_ZIP $DATABASE_FILE
