@@ -26,7 +26,7 @@ do
         echo " ------ Start of $i ------"
         cd $TEMPORAL
         mes1=$(date +%m)
-        mes0=$(($mes1 - 1))
+        mes0=$((10#$mes1 - 1))
         if [ $mes1 -lt 10 ]
                 then
                 NOW=$(date +%Y)-"0$mes0"
