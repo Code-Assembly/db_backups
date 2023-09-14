@@ -6,13 +6,32 @@
 # - Author: Alejandro Capuro
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
-# List of Databases (MYSQL/MARIADB) to be backuped
+# List of Databases (MYSQL/MARIADB) to be backed-up
 DBS=(
         "database_01"
         "database_02"
         "database_03"
         "database_04"
 )
+
+# Eypiry timeouts for deletion set in mins
+
+# 60 mins
+MIN_EXPIRY_LOG="60 mins"
+MIN_EXPIRY=$((60*1))
+# 2 Days
+HOURLY_EXPIRY_LOG="48 hours"
+HOURLY_EXPIRY=$((60*24*2))
+# 90 Days
+DAILY_EXPIRY_LOG="90 Days"
+DAILY_EXPIRY=$((60*24*90))
+# 10 Weeks
+WEEKLY_EXPIRY_LOG="10 Weeks"
+WEEKLY_EXPIRY=$((60*24*7*10))
+# 1.5 years
+MONTHLY_EXPIRY_LOG="18 Months"
+MONTHLY_EXPIRY=$((60*24*548))
+
 # MariaDB Credentials
 MARIA_USER='root'
 MARIA_PASSWORD='password'
