@@ -45,9 +45,9 @@ done
 echo "======================================================="
 echo "In total $COUNTER_K databases has been backuped"
 #Remove old Backups
-echo "Removing old Files (45 Days or Older)"
+echo "Removing old Files ($DAILY_EXPIRY_LOG or Older)"
 cd $DAILY_BACKUP_DIRECTORY
-sudo find *.zip -mtime +45 | xargs sudo rm -fRv
+sudo find *.zip -mmin +$DAILY_EXPIRY | xargs sudo rm -rfv
 echo "Old files removed"
 echo "Syncronizing Files with S3 Bucket ..."
 s3cmd sync --skip-existing --delete-removed $LOCAL_BACKUP_DIRECTORY $S3_BUCKET$S3_DIRECTORY

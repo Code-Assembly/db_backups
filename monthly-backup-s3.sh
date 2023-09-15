@@ -52,9 +52,9 @@ done
 echo "======================================================="
 echo "In total $COUNTER_K databases has been backuped"
 #Remove old Backups
-echo "Removing Files (1.5yrs or older)"
+echo "Removing Files ($MONTHLY_EXPIRY_LOG or Older)"
 cd $MONTHLY_BACKUP_DIRECTORY
-sudo find *.zip -mmin +$((60*24*548)) | xargs sudo rm -rfv
+sudo find *.zip -mmin +$MONTHLY_EXPIRY | xargs sudo rm -rfv
 echo "Old files removed"
 echo "Syncronizing Files with S3 Bucket ..."
 s3cmd sync --skip-existing --delete-removed $LOCAL_BACKUP_DIRECTORY $S3_BUCKET$S3_DIRECTORY

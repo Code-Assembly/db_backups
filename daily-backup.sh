@@ -45,9 +45,9 @@ done
 echo "======================================================="
 echo "In total $COUNTER_K databases has been backedup"
 #Remove old Backups
-echo "Removing old Files (90 Days or Older)"
+echo "Removing old Files ($DAILY_EXPIRY_LOG or Older)"
 cd $DAILY_BACKUP_DIRECTORY
-sudo find *.zip -mtime +90 | xargs sudo rm -fRv
+sudo find *.zip -mmin +$DAILY_EXPIRY | xargs sudo rm -rfv
 echo "Old files removed"
 echo "Script finnished running at | $(date)"
 echo "///////////////////////////////////////////////////////////////////////////////"

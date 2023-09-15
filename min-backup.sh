@@ -46,9 +46,9 @@ echo "======================================================="
 echo "In total $COUNTER_K databases has been backuped"
 
 #Remove old Backups
-echo "Removing old Files (60 min or Older)"
+echo "Removing old Files ($MIN_EXPIRY_LOG or Older)"
 cd $MINUTE_BACKUP_DIRECTORY
-sudo find *.zip -mmin +$((60*1)) | xargs sudo rm -rfv
+sudo find *.zip -mmin +$MIN_EXPIRY | xargs sudo rm -rfv
 echo "Old files removed"
 echo "Script finnished running at | $(date)"
 echo "///////////////////////////////////////////////////////////"

@@ -45,9 +45,9 @@ done
 echo "======================================================="
 echo "In total $COUNTER_K databases has been backedup"
 #Remove old Backups
-echo "Removing old Files (10 Weeks or Older)"
+echo "Removing old Files ($WEEKLY_EXPIRY_LOG or Older)"
 cd $WEEKLY_BACKUP_DIRECTORY
-sudo find *.zip -mmin +$((60*24*7*10)) | xargs sudo rm -rfv
+sudo find *.zip -mmin +$WEEKLY_EXPIRY | xargs sudo rm -rfv
 echo "Old files removed"
 echo "Script finnished running at | $(date)"
 echo "///////////////////////////////////////////////////////////"
