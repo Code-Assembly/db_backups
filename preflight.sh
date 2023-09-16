@@ -11,7 +11,11 @@ PATH_TO_CONFIG=$PWD/config.sh
 TEMPORAL=$PWD/temporal
 source $PATH_TO_CONFIG
 
-S3_PATH=${S3_BUCKET::-1}/$S3_DIRECTORY
+# Check if S3_BUCKET and S3_DIRECTORY variables exist
+if [[ -n "$S3_BUCKET" && -n "$S3_DIRECTORY" ]]; then
+        S3_PATH=${S3_BUCKET::-1}/$S3_DIRECTORY
+fi
+
 MINUTE_BACKUP_DIRECTORY=$LOCAL_BACKUP_DIRECTORY/minute
 HOURLY_BACKUP_DIRECTORY=$LOCAL_BACKUP_DIRECTORY/hourly
 DAILY_BACKUP_DIRECTORY=$LOCAL_BACKUP_DIRECTORY/daily
@@ -127,4 +131,5 @@ if [ -n "$S3_PATH" ]; then
         fi
 else 
         echo "S3_PATH not defined skipping backup to AWS S3"
+        echo ""
 fi
